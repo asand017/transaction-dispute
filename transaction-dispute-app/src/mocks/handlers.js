@@ -2,9 +2,9 @@ import { rest } from 'msw';
 
 export const handlers = [
     // Handles a POST /login request
-    rest.post('/login', (req, res, ctx) => {
-        console.log("request received");
-        /*const { username, password } = req.json;
+    rest.post('http://localhost:3000/login', (req, res, ctx) => {
+        console.log("request received", 12);
+        const { username, password } = req.body;
         //Persist user's authentication in the session
         sessionStorage.setItem('is-authenticated', 'true')
 
@@ -16,12 +16,12 @@ export const handlers = [
                 firstName: 'Bilbo',
                 lastName: 'Baggins'
             })
-        )*/
-        return res(ctx.status(202));
+        )
+        //return res(ctx.status(202));
     }),
 
     // Hanldes a GET /transactions request
-    rest.get('/transactions', (req, res, ctx) => {
+    rest.get('http://localhost:3000/transactions', (req, res, ctx) => {
         // Check if the user is authenticated in this session
         const isAuthenticated = sessionStorage.getItem('is-authenticated')
 

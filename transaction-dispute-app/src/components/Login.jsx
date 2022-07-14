@@ -11,7 +11,7 @@ export const Login = () => {
     const [userData, setUserData] = useState(null);
     const navigate = useNavigate();
 
-    const login = () => {
+    const login = async () => {
         console.log("logging in");
         /*const response = await axios.post('/login', {}, { headers: {
             'Content-Type': 'application/json',
@@ -22,12 +22,17 @@ export const Login = () => {
         })*/
 
         //console.log("res:", response);
-        fetch('/login', {
+        await fetch('/login', {
             method: 'POST',
-        })
-            .then((res) => res.json())
-            // Update the state with the received response
-            .then(setUserData)
+            body: JSON.stringify({
+                username,
+                password
+            }),
+            headers: new Headers({'content-type': 'application/json'}),
+            mode: 'cors',
+        }).then((res) => console.log(res.json()))
+        // Update the state with the received response
+        .then(setUserData)
     }
 
     return(
