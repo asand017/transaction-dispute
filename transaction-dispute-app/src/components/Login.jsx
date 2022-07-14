@@ -28,7 +28,7 @@ export const Login = () => {
                 username,
                 password
             }),
-            headers: new Headers({'content-type': 'application/json'}),
+            headers: new Headers({'Content-Type': 'application/json; charset=UTF-8'}),
             mode: 'cors',
         }).then((res) => console.log(res.json()))
         // Update the state with the received response

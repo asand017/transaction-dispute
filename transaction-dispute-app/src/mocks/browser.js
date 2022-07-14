@@ -1,12 +1,11 @@
 import { setupWorker } from 'msw';
 import { rest } from 'msw';
-import { handlers } from './handlers';
 
 export const worker = setupWorker(
     // Handles a POST /login request
     rest.post('/login', (req, res, ctx) => {
-        console.log("request received");
-        /*const { username, password } = req.json;
+        console.log("request received", req.body);
+        const { username, password } = req.body;
         //Persist user's authentication in the session
         sessionStorage.setItem('is-authenticated', 'true')
 
@@ -18,8 +17,8 @@ export const worker = setupWorker(
                 firstName: 'Bilbo',
                 lastName: 'Baggins'
             })
-        )*/
-        return res(ctx.status(202));
+        )
+        //return res(ctx.status(202));
     }),
 
     // Hanldes a GET /transactions request
