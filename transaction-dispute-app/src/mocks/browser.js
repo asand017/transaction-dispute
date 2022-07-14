@@ -1,6 +1,8 @@
+import { setupWorker } from 'msw';
 import { rest } from 'msw';
+import { handlers } from './handlers';
 
-export const handlers = [
+export const worker = setupWorker(
     // Handles a POST /login request
     rest.post('/login', (req, res, ctx) => {
         console.log("request received");
@@ -45,4 +47,7 @@ export const handlers = [
             })
         )
     }),
-]
+);
+worker.start({
+    onUnhandledRequest: 'warn',
+});
