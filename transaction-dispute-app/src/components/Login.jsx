@@ -1,9 +1,9 @@
 import { Paper } from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import logo from '../Comerica-logo.png';
 import './Login.css';
+import { useEffect } from 'react';
 
 export const Login = () => {
     const [username, setUsername] = useState('');
@@ -12,16 +12,8 @@ export const Login = () => {
     const navigate = useNavigate();
 
     const login = async () => {
-        console.log("logging in");
-        /*const response = await axios.post('/login', {}, { headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-            }, params: {},
-        }).catch(error => {
-            console.log(error);
-        })*/
-
-        //console.log("res:", response);
+        //console.log("logging in");
+    
         await fetch('/login', {
             method: 'POST',
             body: JSON.stringify({
@@ -30,10 +22,20 @@ export const Login = () => {
             }),
             headers: new Headers({'Content-Type': 'application/json; charset=UTF-8'}),
             mode: 'cors',
-        }).then((res) => console.log(res.json()))
+        }).then((res) => res.json())
         // Update the state with the received response
         .then(setUserData)
+        .catch((err) => {
+            console.log(err);
+        })
     }
+
+    useEffect(() => {
+        if(userData){
+            //console.log(userData);
+            navigate('/dashboard');
+        }
+    }, [userData, navigate]);
 
     return(
         <>
@@ -42,7 +44,7 @@ export const Login = () => {
                 <Paper elevation={2} sx={{ position: 'relative', top: '2rem'}}>
                     <form className='login-form' onSubmit={(e) => {
                             e.preventDefault();
-                            console.log("submitted", username, password);
+                            //console.log("submitted", username, password);
                             login();
                             //navigate('/dashboard')
                         }}>

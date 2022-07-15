@@ -1,0 +1,26 @@
+.dashboard_container {
+    width: 100%;
+    padding: 1em;
+}
+
+.navbar {
+    background-color: var(--main-color) !important;
+    width: 100% !important;
+    display: flex;
+    justify-content: flex-end;
+    border-radius: 0 0 12px 12px;
+}
+
+.logout_button {
+    color: rgba(255,255,255,0.7) !important;
+    border-color: rgba(255,255,255,0.7) !important;
+}
+
+.logout_button:hover {
+    color: white !important;
+    border-color: white !important;
+}
+
+.options_button {
+    color: var(--main-color);
+}

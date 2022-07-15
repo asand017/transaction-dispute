@@ -1,3 +1,7 @@
+:root {
+  --main-color: rgb(0,47,108);
+}
+
 *, *:before, *:after {
   box-sizing: border-box;
 }
@@ -5,6 +9,8 @@
 .App {
   text-align: center;
 }
+
+
 
 /*@media (prefers-reduced-motion: no-preference) {
   .App-logo {
