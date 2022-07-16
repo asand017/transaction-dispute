@@ -6,12 +6,11 @@ import {
     Drawer,
     Icon,
     Paper,
-    Slide,
     Table, 
     TableBody, 
     TableCell, 
     TableContainer, 
-    TableHead, TableRow, Toolbar } from '@mui/material';
+    TableRow, Toolbar } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useNavigate } from 'react-router-dom';
 import { TransactionDetails } from './TransactionDetails';
@@ -33,7 +32,7 @@ export const Dashboard = () => {
     }
 
     useEffect(() => {
-        const response = fetch('/transactions', {
+        fetch('/transactions', {
             method: 'GET',
             headers: new Headers({'Content-Type': 'application/json; charset=UTF-8'}),
             mode: 'cors',

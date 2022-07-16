@@ -12,7 +12,6 @@ export const Login = () => {
     const navigate = useNavigate();
 
     const login = async () => {
-        //console.log("logging in");
     
         await fetch('/login', {
             method: 'POST',
@@ -32,7 +31,6 @@ export const Login = () => {
 
     useEffect(() => {
         if(userData){
-            //console.log(userData);
             navigate('/dashboard');
         }
     }, [userData, navigate]);
@@ -44,9 +42,7 @@ export const Login = () => {
                 <Paper elevation={2} sx={{ position: 'relative', top: '2rem'}}>
                     <form className='login-form' onSubmit={(e) => {
                             e.preventDefault();
-                            //console.log("submitted", username, password);
                             login();
-                            //navigate('/dashboard')
                         }}>
                         <label htmlFor="name">Enter your username</label>
                         <input type='text' id="username" onChange={(e) => setUsername(e.target.value)} required/>

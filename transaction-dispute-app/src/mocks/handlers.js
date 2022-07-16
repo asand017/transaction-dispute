@@ -4,7 +4,17 @@ export const handlers = [
     // Handles a POST /login request
     rest.post('/login', (req, res, ctx) => {
         console.log("request received", req.body);
-        const { username } = req.body;
+        const { username, password } = req.body;
+
+        if(!username || !password) {
+            return res(
+                ctx.status(403),
+                ctx.json({
+                    error: 'Username and password are required'
+                })
+            )
+        }
+
         //Persist user's authentication in the session
         sessionStorage.setItem('is-authenticated', 'true')
 

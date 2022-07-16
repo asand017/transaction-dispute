@@ -1,0 +1,12 @@
+.dispute-form__container {
+    padding: 1rem;
+}
+
+.dispute-cancel_button {
+    background-color: grey;
+}
+
+.dispute-next_button {
+    background-color: var(--main-color);
+}
+
