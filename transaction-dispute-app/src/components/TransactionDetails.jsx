@@ -33,7 +33,7 @@ function reducer(state, action) {
 export const TransactionDetails = (props) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const [dispute, setDispute] = useState('');
-    const [customDispute, setCustomDispute] = useState(null);
+    const [customDispute, setCustomDispute] = useState('');
 
     useEffect(() => {
         console.log(props);

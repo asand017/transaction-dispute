@@ -13,4 +13,7 @@
 
 .left-col {
     align-self: end;
+    font-size: 1.25em;
+    font-weight: 150;
+    color: var(--main-color);
 }

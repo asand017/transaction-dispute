@@ -7,14 +7,21 @@ import { Button, Icon, Divider } from "@mui/material";
 export const Submission = (props) => {
 
     useEffect(() => {
-
+        fetch('http://localhost:8080/disputes', {
+            method: 'POST',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            }
+        })
+        .then(response => response)
+        .then(data => console.log(data))
     }, []);
 
     return (
         <>
             <Header title="Dispute Transaction"
                 left_icon={
-                    <Icon onClick={props.onClose} 
+                    <Icon onClick={() => props.dispatch({ type: 'details' })} 
                         sx={{ position: 'absolute', left: '10px' }}>
                         <ArrowBackIosIcon/>
                     </Icon>
@@ -26,6 +33,11 @@ export const Submission = (props) => {
                 }
             />
             <Divider/>
+            <div className="flex-center">
+                <div style={{ width: '35vw' }}>
+                    <Button fullWidth variant="contained">Done</Button>
+                </div>
+            </div>
         </>
     )
 }
