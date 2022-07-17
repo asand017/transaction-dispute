@@ -1,4 +1,4 @@
-import { useEffect, useReducer  } from "react";
+import { useEffect, useReducer, useState  } from "react";
 import { Avatar, Divider, Icon } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import StorefrontIcon from '@mui/icons-material/Storefront';
@@ -8,6 +8,9 @@ import './TransactionDetails.css';
 import { grey } from "@mui/material/colors";
 import { Dispute } from "./Dispute";
 import { DisputeReview } from "./DisputeReview";
+import { Submission } from "./Submission";
+import { Header } from './Header';
+import { disputeDescriptions } from "./disputeDescriptions";
 
 const initialState = { option: 'details' };
 
@@ -20,6 +23,8 @@ function reducer(state, action) {
             return { option: 'dispute'};
         case 'review':
             return { option: 'review'};
+        case 'submit':
+            return { option: 'submit'};
         default:
             throw new Error();
     }
@@ -27,6 +32,8 @@ function reducer(state, action) {
 
 export const TransactionDetails = (props) => {
     const [state, dispatch] = useReducer(reducer, initialState);
+    const [dispute, setDispute] = useState('');
+    const [customDispute, setCustomDispute] = useState(null);
 
     useEffect(() => {
         console.log(props);
@@ -38,18 +45,16 @@ export const TransactionDetails = (props) => {
 
     return (
         <>
-            <div className="container">
+            <div className="container"> 
                 {(state.option === 'details') && 
                     <>
-                        <div className="header">
-                            <div className="banner"></div>
-                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <p>Transaction Details</p>
+                        <Header title="Transaction Details" 
+                            right_icon={
                                 <Icon onClick={props.onClose} sx={{ position: 'absolute', right: '10px'}}>
                                     <CloseIcon/>
                                 </Icon>
-                            </div>
-                        </div>
+                            }
+                        />
                         <Divider/>
                         <div className="transactions__content">
                             <div className="flex-center column price">
@@ -82,10 +87,29 @@ export const TransactionDetails = (props) => {
                     </>
                 } 
                 {(state.option === 'dispute') && 
-                    <Dispute dispatch={dispatch} onClose={props.onClose}/>
+                    <Dispute 
+                        dispatch={dispatch} 
+                        onClose={props.onClose} 
+                        dispute={dispute}
+                        changeDispute={setDispute} 
+                        customDispute={customDispute}
+                        changeCustomDispute={setCustomDispute}
+                    />
                 }
                 {(state.option === 'review') && 
-                    <DisputeReview dispatch={dispatch} onClose={props.onClose}/>
+                    <DisputeReview 
+                        dispatch={dispatch} 
+                        onClose={props.onClose}
+                        details={props.details}
+                        dispute={dispute ? disputeDescriptions[dispute] : customDispute}
+                    />
+                }
+                {(state.option === 'submit') &&
+                    <Submission
+                        dispatch={dispatch}
+                        onClose={props.onClose}
+                        details={props.details}
+                    />
                 }
             </div>  
         </>

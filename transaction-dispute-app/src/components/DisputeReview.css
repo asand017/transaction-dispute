@@ -1,0 +1,16 @@
+.dispute_summary-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1em;
+}
+
+.summary-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.left-col {
+    align-self: end;
+}

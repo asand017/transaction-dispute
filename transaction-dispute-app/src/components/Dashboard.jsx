@@ -69,9 +69,19 @@ export const Dashboard = () => {
                                         key={i}
                                         sx={{ maxWidth: '100%', '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
-                                        <TableCell component="th" scope="row">{(new Date(elem.posted_date)).toDateString()}</TableCell>
-                                        <TableCell align="right">{elem.description}</TableCell>
-                                        <TableCell align="right">${elem.charge}</TableCell>
+                                        <TableCell component="th" scope="row">
+                                            <h3 style={{fontWeight: '100'}}>{(new Date(elem.posted_date)).toDateString()}</h3>
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            <h3 style={{}}>
+                                                {elem.description}
+                                            </h3>
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            <h3 style={{fontWeight: '200', color: 'var(--main-color)', opacity: '0.8'}}>
+                                                ${elem.charge}
+                                            </h3>
+                                        </TableCell>
                                         <TableCell align="right">
                                             <Icon onClick={(e) => {
                                                 setTransaction(elem)

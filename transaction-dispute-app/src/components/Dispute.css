@@ -3,7 +3,7 @@
 }
 
 .dispute-cancel_button {
-    background-color: grey;
+    background-color: grey !important;
 }
 
 .dispute-next_button {
