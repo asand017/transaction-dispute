@@ -35,14 +35,6 @@ export const TransactionDetails = (props) => {
     const [dispute, setDispute] = useState('');
     const [customDispute, setCustomDispute] = useState('');
 
-    useEffect(() => {
-        console.log(props);
-    })
-
-    useEffect(() => {
-        console.log(state.option);
-    }, [state.option])
-
     return (
         <>
             <div className="container"> 
@@ -101,14 +93,22 @@ export const TransactionDetails = (props) => {
                         dispatch={dispatch} 
                         onClose={props.onClose}
                         details={props.details}
-                        dispute={dispute ? disputeDescriptions[dispute] : customDispute}
+                        dispute={(dispute !== 'other') ? disputeDescriptions[dispute] : customDispute}
                     />
                 }
                 {(state.option === 'submit') &&
                     <Submission
                         dispatch={dispatch}
                         onClose={props.onClose}
-                        details={props.details}
+                        details={
+                            {
+                                amount: props.details.charge,
+                                description: props.details.description,
+                                id: props.details.id,
+                                posted_date: props.details.posted_date,
+                                dispute: ((dispute !== 'other') ? disputeDescriptions[dispute] : customDispute)
+                            }
+                        }
                     />
                 }
             </div>  

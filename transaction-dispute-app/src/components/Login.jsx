@@ -19,7 +19,7 @@ export const Login = () => {
                 username,
                 password
             }),
-            headers: new Headers({'Content-Type': 'application/json; charset=UTF-8'}),
+            headers: new Headers({'Content-Type': 'application/json;'}),
             mode: 'cors',
         }).then((res) => res.json())
         // Update the state with the received response
@@ -38,14 +38,14 @@ export const Login = () => {
     return(
         <>
             <div className="content">
-                <img src={logo} className="App-logo" alt="comerica-logo"/>
+                <img src={logo} role="img" className="App-logo" alt="comerica-logo"/>
                 <Paper elevation={2} sx={{ position: 'relative', top: '2rem'}}>
                     <form className='login-form' onSubmit={(e) => {
                             e.preventDefault();
                             login();
                         }}>
                         <label htmlFor="name">Enter your username</label>
-                        <input type='text' id="username" onChange={(e) => setUsername(e.target.value)} required/>
+                        <input type='text' role="textbox" id="username" onChange={(e) => setUsername(e.target.value)} required/>
                         <label htmlFor="password">Enter your password</label>
                         <input type='password' id="password" onChange={(e) => setPassword(e.target.value)} required/>
                         <button type='submit'>Sign In</button>

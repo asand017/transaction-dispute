@@ -10,6 +10,7 @@ const logger = winston.createLogger({
     defaultMeta: { service: 'dispute-service' },
     transports: [
         new winston.transports.File({ filename: 'error.log', level: 'error' }),
+        new winston.transports.File({ filename: 'transactions.log', level: 'info'}),
         new winston.transports.File({ filename: 'combined.log' }),
     ],
 })
@@ -18,11 +19,23 @@ app.use(cors({
     origin: 'http://localhost:3000'
 }))
 
+app.use(express.json())
+
 app.post('/disputes', function(req,res) {
-    console.log("post dispute triggered")
-    res.status(202).send('POST new dispute')
+    logger.info(req.body.dispute)
+    if(!req.body.dispute){
+        logger.error("invalid dispute input")
+        return res.status(400).send({message: 'A dispute is required for successful submission'})
+    }
+
+    if(!req.body.id){
+        logger.error("could not find transaction id")
+        return res.status(400).send({message: 'Unable to find transaction id for dispute'})
+    }
+
+    res.status(202).send({data: 'POST new dispute'})
 })
 
 app.listen(port, () => {
-    logger.info(`${new Date(Date.now()).toISOString()} | Server listening on port ${port}`)
+    console.log(`${new Date(Date.now()).toISOString()} | Server listening on port ${port}`)
 })

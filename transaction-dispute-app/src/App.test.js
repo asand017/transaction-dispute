@@ -1,15 +1,16 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import App from './App';
 
-test('renders landing page', () => {
+test('renders landing (login) page', () => {
   render(
     <MemoryRouter initialEntries={["/"]}>    
       <App />
     </MemoryRouter>
   );
-  //const linkElement = screen.getByText(/learn react/i);
-  //expect(linkElement).toBeInTheDocument();
+ 
   expect(screen.getByRole("img")).toBeInTheDocument();
+  expect(screen.getByRole("textbox")).toBeInTheDocument();
+  expect(screen.getByLabelText("Enter your password")).toBeInTheDocument();
 });

@@ -34,22 +34,18 @@ export const Dashboard = () => {
     useEffect(() => {
         fetch('/transactions', {
             method: 'GET',
-            headers: new Headers({'Content-Type': 'application/json; charset=UTF-8'}),
+            headers: new Headers({'Content-Type': 'application/json;'}),
             mode: 'cors',
         }).then((res) => res.json())
         // Update the state with the received response
-        .then(setTransactions)
+        .then((data) => {
+            setTransactions(data);
+        })
         .catch((err) => {
-            console.log(err);
+            console.error(err);
         });
         return () => {}
     }, []);
-
-    useEffect(() => {
-        if(transactions){
-            console.log(transactions);
-        }
-    }, [transactions]);
 
     return(
         <>
