@@ -8,11 +8,12 @@ import { useEffect } from 'react';
 export const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [usernameError, setUsernameError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
     const [userData, setUserData] = useState(null);
     const navigate = useNavigate();
 
     const login = async () => {
-    
         await fetch('/login', {
             method: 'POST',
             body: JSON.stringify({
@@ -29,6 +30,41 @@ export const Login = () => {
         })
     }
 
+    const validate = () => {
+        let uname = username;
+        let pword = password;
+        let unameError = usernameError;
+        let pwordError = passwordError;
+        let error = false;
+
+        if(!uname) {
+            unameError = "Username cannot be blank";
+            setUsernameError(unameError);
+            error = true;
+        }else
+            setUsernameError('');
+
+        if(pword.length < 10) {
+            pwordError = "Password must be at least 10 characters long";
+            setPasswordError(pwordError);
+            error = true;
+        }else
+            setPasswordError('');
+
+        if(error)
+            return false;
+        
+        return true;
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        let isValid = validate();
+        if (isValid)
+            login();
+        
+    }
+
     useEffect(() => {
         if(userData){
             navigate('/dashboard');
@@ -40,14 +76,17 @@ export const Login = () => {
             <div className="content">
                 <img src={logo} role="img" className="App-logo" alt="comerica-logo"/>
                 <Paper elevation={2} sx={{ position: 'relative', top: '2rem'}}>
-                    <form className='login-form' onSubmit={(e) => {
-                            e.preventDefault();
-                            login();
-                        }}>
-                        <label htmlFor="name">Enter your username</label>
-                        <input type='text' role="textbox" id="username" onChange={(e) => setUsername(e.target.value)} required/>
-                        <label htmlFor="password">Enter your password</label>
-                        <input type='password' id="password" onChange={(e) => setPassword(e.target.value)} required/>
+                    <form className='login-form' onSubmit={handleSubmit}>
+                        <div style={{ display: 'flex', flexDirection: 'column'}}>
+                            <label htmlFor="name">Enter your username</label>
+                            <input type='text' role="textbox" id="username" onChange={(e) => setUsername(e.target.value)}/>
+                            {usernameError && <div style={{color: 'red'}}>{usernameError}</div>}
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column'}}>
+                            <label htmlFor="password">Enter your password</label>
+                            <input type='password' id="password" onChange={(e) => setPassword(e.target.value)}/>
+                            {passwordError && <div style={{color: 'red'}}>{passwordError}</div>}
+                        </div>
                         <button type='submit'>Sign In</button>
                     </form>
                 </Paper>

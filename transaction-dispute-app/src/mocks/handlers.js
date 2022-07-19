@@ -28,7 +28,6 @@ export const handlers = [
                 lastName: 'Baggins'
             })
         )
-        //return res(ctx.status(202));
     }),
 
     // Hanldes a GET /transactions request

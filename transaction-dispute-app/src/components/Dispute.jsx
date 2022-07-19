@@ -4,8 +4,10 @@ import { Box, Button, Divider, FormControl, Icon, InputLabel, MenuItem, Select, 
 import './Dispute.css';
 import { Header } from './Header';
 import { disputeDescriptions } from './disputeDescriptions';
+import { useState } from 'react';
 
 export const Dispute = (props) => {
+    const [customDisputeError, setCustomDisputeError] = useState('');
 
     const handleChange = (event) => {
         props.changeDispute(event.target.value);
@@ -13,6 +15,22 @@ export const Dispute = (props) => {
 
     const handleCustomChange = (event) => {
         props.changeCustomDispute(event.target.value);
+    }
+
+    const validate = () => {
+        if(!props.customDispute){
+            setCustomDisputeError("Custom dispute cannot be left blank");
+            return false;
+        }else
+            setCustomDisputeError('');
+        
+        return true;
+    }
+
+    const nextHandler = () => {
+        let isValid = validate();
+        if(isValid)
+            props.dispatch({ type: 'review' })
     }
 
     return(
@@ -54,20 +72,23 @@ export const Dispute = (props) => {
                 </Box>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
                     {props.dispute === 'other' && 
-                        <TextField 
-                            id="custom-dispute"
-                            label="Describe your dispute"
-                            multiline
-                            rows={4}
-                            value={props.customDispute}
-                            onChange={handleCustomChange}
-                            sx={{ marginTop: '2rem', width: '100%'}}
-                        />
+                        <>
+                            <TextField 
+                                id="custom-dispute"
+                                label="Describe your dispute"
+                                multiline
+                                rows={4}
+                                value={props.customDispute}
+                                onChange={handleCustomChange}
+                                sx={{ marginTop: '2rem', width: '100%'}}
+                            />
+                            <div style={{color: 'red'}}>{customDisputeError}</div>
+                        </>
                     }
                     {props.dispute && 
                         <div className='flex-center' style={{ marginTop: '2rem', gap: '20px'}}>
                             <Button variant="contained" fullWidth className="dispute-cancel_button" onClick={props.onClose}>Cancel</Button>
-                            <Button variant="contained" fullWidth className="dispute-next_button" onClick={() => props.dispatch({ type: 'review' })}>Next</Button>
+                            <Button variant="contained" fullWidth className="dispute-next_button" onClick={nextHandler}>Next</Button>
                         </div>
                     }
                 </div>

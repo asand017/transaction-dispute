@@ -74,7 +74,7 @@ export const Dashboard = () => {
                                             </h3>
                                         </TableCell>
                                         <TableCell align="right">
-                                            <h3 style={{fontWeight: '200', color: 'var(--main-color)', opacity: '0.8'}}>
+                                            <h3 style={{fontWeight: '200', fontSize: '1.25rem', color: 'var(--main-color)', opacity: '0.8'}}>
                                                 ${elem.charge}
                                             </h3>
                                         </TableCell>
