@@ -6,7 +6,7 @@ Create a mocked financial app with the function of submitting a dispute form for
 
 ## Deployment:
 To run locally using npm:<br>
-> // clone repo
+> // clone repo <br>
 > $ cd transaction-dispute <br>
 > $ npm run dev <br>
 <br>
