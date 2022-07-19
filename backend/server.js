@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const winston = require('winston')
+const path = require('path')
 const port = 8080
 
 const logger = winston.createLogger({
@@ -20,6 +21,8 @@ app.use(cors({
 }))
 
 app.use(express.json())
+
+app.use('/', express.static(path.resolve(__dirname, "../transaction-dispute-app/build")))
 
 app.post('/disputes', function(req,res) {
     logger.info(req.body.dispute)

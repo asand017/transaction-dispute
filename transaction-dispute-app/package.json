@@ -2,6 +2,7 @@
   "name": "transaction-dispute-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
@@ -40,10 +41,10 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "msw": "^0.39.2"
-  },
   "msw": {
     "workerDirectory": "public"
+  },
+  "devDependencies": {
+    "msw": "^0.39.2"
   }
 }

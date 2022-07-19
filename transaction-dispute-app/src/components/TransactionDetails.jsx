@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState  } from "react";
+import { useReducer, useState  } from "react";
 import { Avatar, Divider, Icon } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import StorefrontIcon from '@mui/icons-material/Storefront';

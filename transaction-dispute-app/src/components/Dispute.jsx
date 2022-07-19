@@ -18,6 +18,9 @@ export const Dispute = (props) => {
     }
 
     const validate = () => {
+        if(props.dispute !== 'other') 
+            return true;
+
         if(!props.customDispute){
             setCustomDisputeError("Custom dispute cannot be left blank");
             return false;
@@ -30,7 +33,8 @@ export const Dispute = (props) => {
     const nextHandler = () => {
         let isValid = validate();
         if(isValid)
-            props.dispatch({ type: 'review' })
+            props.dispatch({ type: 'review' });
+        
     }
 
     return(

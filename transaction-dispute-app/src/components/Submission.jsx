@@ -32,7 +32,7 @@ export const Submission = (props) => {
         })
         .catch(error => {
             console.error('There has been a problem with your fetch operation:', error);
-            setErr(error);
+            setErr("Unable to connect to server");
         })
     }, []);
 
@@ -63,7 +63,7 @@ export const Submission = (props) => {
                         </>
                     }
                 </div>
-                <div style={{ width: '35vw' }}>
+                <div style={{ width: '25vw', marginTop: '2rem' }}>
                     <Button fullWidth variant="contained" style={{ backgroundColor: 'var(--main-color)'}} onClick={props.onClose}>Done</Button>
                 </div>
             </div>
