@@ -10,9 +10,9 @@ const logger = winston.createLogger({
     format: winston.format.json(),
     defaultMeta: { service: 'dispute-service' },
     transports: [
-        new winston.transports.File({ filename: 'error.log', level: 'error' }),
-        new winston.transports.File({ filename: 'transactions.log', level: 'info'}),
-        new winston.transports.File({ filename: 'combined.log' }),
+        new winston.transports.File({ filename: './backend/error.log', level: 'error' }),
+        new winston.transports.File({ filename: './backend/transactions.log', level: 'info'}),
+        new winston.transports.File({ filename: './backend/combined.log' }),
     ],
 })
 
