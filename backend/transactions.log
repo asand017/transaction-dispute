@@ -63,3 +63,5 @@
 {"level":"info","message":"dsadas","service":"dispute-service"}
 {"level":"info","message":"I was incorrectly charged for a purchase I made.","service":"dispute-service"}
 {"level":"info","message":"I was incorrectly charged for a purchase I made.","service":"dispute-service"}
+{"level":"info","message":"I'm still being charged for a product or service.","service":"dispute-service"}
+{"level":"info","message":"I'm still being charged for a product or service.","service":"dispute-service"}

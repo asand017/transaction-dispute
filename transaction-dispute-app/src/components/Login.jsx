@@ -16,15 +16,16 @@ export const Login = () => {
     const login = async () => {
         await fetch('/login', {
             method: 'POST',
-            body: JSON.stringify({
-                username,
-                password
-            }),
-            headers: new Headers({'Content-Type': 'application/json;'}),
+            headers: new Headers({'Content-Type': 'application/json'}),
             mode: 'cors',
+            body: JSON.stringify({username: username, password: password}),
         }).then((res) => res.json())
         // Update the state with the received response
-        .then(setUserData)
+        .then((data) => {
+            //Persist user's authentication in the session
+            sessionStorage.setItem('is-authenticated', 'true')
+            setUserData(data);
+        })
         .catch((err) => {
             console.log(err);
         })

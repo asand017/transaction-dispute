@@ -10,7 +10,7 @@ To run locally using npm:<br>
 > $ cd transaction-dispute <br>
 > $ npm run dev <br>
 <br>
-App will be available on http://localhost:3000
+App will be available on *http://localhost:3000/* or *http://localhost:8080/* 
 
 ## Implementation Notes:
 * Login and Transaction API endpoints are mocked via msw (mock service worker) on the React side and so only work in development mode. *Will include endpoints to Node/Java server to respond in production* <br>

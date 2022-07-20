@@ -35,7 +35,7 @@ export const Dashboard = () => {
         fetch('/transactions', {
             method: 'GET',
             headers: new Headers({'Content-Type': 'application/json;'}),
-            mode: 'cors',
+            mode: 'cors'
         }).then((res) => res.json())
         // Update the state with the received response
         .then((data) => {
@@ -52,7 +52,10 @@ export const Dashboard = () => {
             <Box sx={{ flexGrow: 1, width: '100%', position: 'relative', zIndex: '1' }}>
                 <AppBar position="static" sx={{width: '100%', borderRadius: '0 0 12px 12px'}}>
                     <Toolbar className='navbar'>
-                        <Button className='logout_button' variant='outlined' onClick={() => navigate('/')}>Logout</Button>
+                        <Button className='logout_button' variant='outlined' onClick={() => {
+                            sessionStorage.removeItem('is-authenticated');
+                            navigate('/');
+                            }}>Logout</Button>
                     </Toolbar>
                 </AppBar>
                 <div style={{height: 'auto'}}>
