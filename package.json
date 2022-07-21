@@ -7,7 +7,7 @@
     "winston": "^3.8.1"
   },
   "scripts": {
-    "start": "npm install && node backend/server.js",
+    "start": "npm install && node backend-node/server.js",
     "react": "cd ./transaction-dispute-app && npm install && npm start",
     "dev": "concurrently \"npm run start\" \"npm run react\""
   }

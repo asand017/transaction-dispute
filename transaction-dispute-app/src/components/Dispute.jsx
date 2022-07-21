@@ -1,10 +1,10 @@
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Box, Button, Divider, FormControl, Icon, InputLabel, MenuItem, Select, TextField } from '@mui/material';
-import './Dispute.css';
 import { Header } from './Header';
 import { disputeDescriptions } from './disputeDescriptions';
 import { useState } from 'react';
+import './Dispute.css';
 
 export const Dispute = (props) => {
     const [customDisputeError, setCustomDisputeError] = useState('');
