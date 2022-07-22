@@ -64,6 +64,7 @@ export const Dashboard = () => {
                         <Table>
                             <TableBody>
                                 {transactions && transactions.data.map((elem, i) => {
+                                    console.log(elem.posted_date);
                                     return(<TableRow 
                                         key={i}
                                         sx={{ maxWidth: '100%', '&:last-child td, &:last-child th': { border: 0 } }}
